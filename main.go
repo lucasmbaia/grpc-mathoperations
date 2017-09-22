@@ -23,6 +23,7 @@ func main() {
   go func() {
     configCMD = base.ConfigCMD {
       SSL:		true,
+      RegisterConsul:	true,
       ServiceServer:	reflect.Indirect(reflect.ValueOf(mathoperations.RegisterMathOperationsServiceServer)),
       HandlerEndpoint:  reflect.Indirect(reflect.ValueOf(mathoperations.RegisterMathOperationsServiceHandlerFromEndpoint)),
       ServerConfig:     server.NewMathOperationsServer(),

@@ -6,17 +6,19 @@ import (
   "github.com/lucasmbaia/grpc-base/config"
   "github.com/lucasmbaia/grpc-mathoperations/proto"
   "google.golang.org/grpc/credentials"
+  "github.com/lucasmbaia/grpc-base/zipkin"
+  "github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 )
 
 type Config struct {
-  SSL bool
+  Collector zipkin.Collector
 }
 
 func init() {
   config.LoadConfig()
 }
 
-func (c Config) CalcDouble(n *mathoperations.Number) (mathoperations.Result, error) {
+func (c Config) CalcDouble(ctx context.Context, n *mathoperations.Number) (mathoperations.Result, error) {
   var (
     conn  *grpc.ClientConn
     cM    mathoperations.MathOperationsServiceClient
@@ -32,7 +34,7 @@ func (c Config) CalcDouble(n *mathoperations.Number) (mathoperations.Result, err
 
   cM = mathoperations.NewMathOperationsServiceClient(conn)
 
-  if r, err = cM.Double(context.Background(), &mathoperations.Number{Value: n.Value}); err != nil {
+  if r, err = cM.Double(ctx, &mathoperations.Number{Value: n.Value}); err != nil {
     return value, err
   }
 
@@ -53,10 +55,12 @@ func (c Config) connect() (*grpc.ClientConn, error) {
 
     opts = []grpc.DialOption{
       grpc.WithTransportCredentials(creds),
+      grpc.WithUnaryInterceptor(otgrpc.OpenTracingClientInterceptor(c.Collector.Tracer)),
     }
   } else {
     opts = []grpc.DialOption{
       grpc.WithInsecure(),
+      grpc.WithUnaryInterceptor(otgrpc.OpenTracingClientInterceptor(c.Collector.Tracer)),
     }
   }
 
