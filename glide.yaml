@@ -1,4 +1,3 @@
 package: github.com/lucasmbaia/grpc-mathoperations
 import:
 - package: github.com/lucasmbaia/grpc-base
-- package: github.com/golang/protobuf/proto
