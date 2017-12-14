@@ -1,12 +1,14 @@
-hash: 6432cd6998532b07af2b0cb6007dd12f3dd094f3ac11eba95fef39e351adcb3b
-updated: 2017-11-17T13:30:48.458323731-02:00
+hash: 3d77fc4b137d8e793acee3c3e69ac30b543358336d8769b985647cc4d0530728
+updated: 2017-12-14T11:09:47.656655455-02:00
 imports:
 - name: github.com/apache/thrift
-  version: 95d5fb3a1e38125b9eabcbe9cda1a6c7bbe3e93d
+  version: 14f5d500b9ae0fb6654aec9009a8bc34a8bb6dfb
   subpackages:
   - lib/go/thrift
+- name: github.com/certifi/gocertifi
+  version: a4ab0227d360091084658029ec8ae45f989fba3e
 - name: github.com/coreos/etcd
-  version: 24b19ee222af33abc595d71b0985e00c90d6e44b
+  version: b48cf77abb78755c8654eb8da61bc90a32802e7d
   subpackages:
   - client
   - pkg/pathutil
@@ -29,10 +31,12 @@ imports:
   version: bb955e01b9346ac19dc29eb16586c90ded99a98c
 - name: github.com/eapache/queue
   version: 44cc805cf13205b55f69e14bcb69867d1ae92f98
+- name: github.com/getsentry/raven-go
+  version: 32a13797442ccb601b11761d74232773c1402d14
 - name: github.com/go-logfmt/logfmt
   version: 390ab7935ee28ec6b286364bba9b4dd6410cb3d5
 - name: github.com/gogo/protobuf
-  version: 616a82ed12d78d24d4839363e8f3c5d3f20627cf
+  version: 35b81a066e522fb86ece043a8ef1dbfa10b4fed1
   subpackages:
   - proto
 - name: github.com/golang/protobuf
@@ -60,31 +64,34 @@ imports:
   subpackages:
   - go/otgrpc
 - name: github.com/hashicorp/consul
-  version: 70f3ad5582d174828f0fbb6cb5865a7cf45b4480
+  version: c20c6727b702cec1c50dafd396eb93efe544ca33
   subpackages:
   - api
 - name: github.com/hashicorp/go-cleanhttp
-  version: 3573b8b52aa7b37b9358d966a898feb387f62437
+  version: 06c9ea3a335b7443026f8124b22619524420291b
 - name: github.com/hashicorp/go-rootcerts
   version: 6bb64b370b90e7ef1fa532be9e591a81c3493e00
 - name: github.com/hashicorp/serf
-  version: c20a0b1b1ea9eb8168bcdec0116688fa9254e449
+  version: a110af454b635c75adc2b7eee541af2c68666d97
   subpackages:
   - coordinate
 - name: github.com/kr/logfmt
   version: b84e30acd515aadc4b783ad4ff83aff3299bdfe0
 - name: github.com/lucasmbaia/go-environment
-  version: 7bca66e26f46c1e6cf78426c64f4a59a1756faa1
+  version: 4fdfa148997252ab1801f580134c2c60f6988941
   subpackages:
   - etcd
   - local
 - name: github.com/lucasmbaia/grpc-base
-  version: 416633893d75bc7f2518eb6819242d25729fd4e6
+  version: f81fc4583083c5a33074564c0c0b30d48e7be2b6
   subpackages:
   - base
   - config
   - consul
   - utils
+  - utils/logging
+  - utils/panic
+  - utils/transaction
   - zipkin
 - name: github.com/mitchellh/go-homedir
   version: b8bc1bf767474819792c23f32d8286a45736f1c6
@@ -96,7 +103,7 @@ imports:
   - ext
   - log
 - name: github.com/openzipkin/zipkin-go-opentracing
-  version: 45e90b00710a4c34a1a7d8a78d90f9b010b0bd4d
+  version: c64eef160e31f1028ad4aa4dac7c04f215d72e0d
   subpackages:
   - flag
   - thrift/gen-go/scribe
@@ -109,16 +116,26 @@ imports:
   version: a0006b13c722f7f12368c00a3d3c2ae8a999a0c6
   subpackages:
   - xxHash32
+- name: github.com/pkg/errors
+  version: 8842a6e0cc595d1cc9d931f6c875883967280e32
 - name: github.com/rcrowley/go-metrics
-  version: 1f30fe9094a513ce4c700b9a54458bbb0c96996c
+  version: e181e095bae94582363434144c61a9653aff6e50
+- name: github.com/satori/go.uuid
+  version: 5bf94b69c6b68ee1b541973bb8e1144db23a194b
 - name: github.com/Shopify/sarama
-  version: 240fd146ce68bcafb034cc5dc977229ffbafa8ea
+  version: 3b1b38866a79f06deddf0487d5c27ba0697ccd65
+- name: github.com/sirupsen/logrus
+  version: d682213848ed68c0a260ca37d6dd5ace8423f5ba
 - name: github.com/ugorji/go
   version: bdcc60b419d136a85cdf2e7cbcac34b3f1cd6e57
   subpackages:
   - codec
+- name: golang.org/x/crypto
+  version: 94eea52f7b742c7cbe0b03b22f0c4c8631ece122
+  subpackages:
+  - ssh/terminal
 - name: golang.org/x/net
-  version: 9dfe39835686865bff950a07b394c12a98ddc811
+  version: d866cfc389cec985d6fda2859936a575a55a3ab6
   subpackages:
   - context
   - http2
@@ -127,6 +144,11 @@ imports:
   - internal/timeseries
   - lex/httplex
   - trace
+- name: golang.org/x/sys
+  version: ebfc5b4631820b793c9010c87fd8fef0f39eb082
+  subpackages:
+  - unix
+  - windows
 - name: golang.org/x/text
   version: b19bf474d317b857955b12035d2c5acb57ce8b01
   subpackages:
@@ -135,14 +157,15 @@ imports:
   - unicode/bidi
   - unicode/norm
 - name: google.golang.org/genproto
-  version: 11c7f9e547da6db876260ce49ea7536985904c9b
+  version: a8101f21cf983e773d0c1133ebc5424792003214
   subpackages:
   - googleapis/api/annotations
   - googleapis/rpc/status
 - name: google.golang.org/grpc
-  version: c1fc29613da668384b9a63e81b424d627f0b0a02
+  version: 8fba5fc8fd4073dd1452d6b2c7335030848a41b1
   subpackages:
   - balancer
+  - balancer/base
   - balancer/roundrobin
   - codes
   - connectivity
@@ -159,6 +182,7 @@ imports:
   - reflection/grpc_reflection_v1alpha
   - resolver
   - resolver/dns
+  - resolver/manual
   - resolver/passthrough
   - stats
   - status
